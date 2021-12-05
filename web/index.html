@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Send Message Bot</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="eel.js"></script>
+</head>
+<body>
+    <div class="box">
+        <img src="send.png" alt="Send message">
+        <h2>Telegram Sender</h2>
+        <input type="text" id="id" placeholder="Chat ID">
+        <textarea type="text" id="message" placeholder="Message"></textarea><br>
+        <button id="send">Отпрaвить сообщение</button>
+        <p id="result"></p>
+    </div>
+
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+    <script>
+        async function send_msg() {
+            let chat_id = document.getElementById('id').value;
+            let msg = document.getElementById('message').value;
+
+            let result = await eel.send_message(chat_id, msg)();
+            document.getElementById('result').innerHTML = result;
+
+            document.getElementById('message').value = "";
+        }
+
+        $('#send').click(function(){
+            send_msg();
+        })
+    </script>
+</body>
+</html>
